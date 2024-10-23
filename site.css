@@ -1,0 +1,103 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #df6aa0; /* Couleur de fond rose */
+    color: #46484b; /* Couleur du texte gris */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #46484b; /* Couleur des titres en gris */
+}
+
+.container {
+    margin-top: 30px; /* Espace en haut des containers */
+}
+
+/* Styles pour les alertes */
+.alert {
+    margin-bottom: 20px; /* Espace en bas des alertes */
+}
+
+/* Styles pour les boutons */
+.btn {
+    border-radius: 5px; /* Coins arrondis pour les boutons */
+    padding: 10px 15px; /* Espacement interne pour les boutons */
+    font-weight: bold; /* Texte en gras pour les boutons */
+    background-color: #46484b; /* Couleur de fond gris pour les boutons */
+    border: 1px solid #46484b; /* Bordure gris pour les boutons */
+    color: white; /* Couleur du texte des boutons en blanc */
+}
+
+.btn:hover {
+    background-color: #5a6268; /* Couleur gris foncé au survol */
+    border-color: #545b62; /* Bordure gris foncé au survol */
+}
+
+/* Styles spécifiques au panier */
+.table {
+    margin-top: 20px; /* Espace au-dessus du tableau */
+    background-color: white; /* Fond blanc pour les tableaux */
+}
+
+.table th {
+    background-color: #46484b; /* Couleur de fond gris pour les en-têtes */
+    color: white; /* Couleur du texte des en-têtes en blanc */
+}
+
+.card {
+    border: 1px solid #46484b; /* Bordure gris pour les cartes */
+    border-radius: 10px; /* Coins arrondis pour les cartes */
+    transition: transform 0.2s; /* Animation lors du survol */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Agrandissement lors du survol */
+}
+
+/* Styles pour l'image en haut de page */
+.image-titre img {
+    width: 50%; /* Utiliser la largeur complète du conteneur */
+    height: auto; /* Garder le ratio de l'image */
+    max-height: 325px; /* Limiter la hauteur maximale de l'image */
+    object-fit: cover; /* S'assurer que l'image couvre l'espace disponible */
+}
+
+/* Formulaires */
+.form-control {
+    border-radius: 5px; /* Coins arrondis pour les champs de formulaire */
+    border: 1px solid #ced4da; /* Bordure par défaut */
+}
+
+.form-control:focus {
+    border-color: #46484b; /* Bordure grise lors de la mise au point */
+    box-shadow: 0 0 5px rgba(108, 117, 125, 0.5); /* Ombre portée */
+}
+
+/* Styles pour le footer */
+footer {
+    background-color: #343a40; /* Couleur de fond du footer */
+    color: white; /* Couleur du texte du footer */
+    text-align: center; /* Alignement centré */
+    padding: 10px 0; /* Espacement interne */
+    position: relative; /* Positionnement relatif */
+    bottom: 0; /* Positionné en bas */
+    width: 100%; /* Largeur complète */
+}
+
+/* Styles pour les cartes (skins) */
+.card-body {
+    text-align: center; /* Centre le texte dans le corps de la carte */
+}
+
+/* Autres styles généraux */
+a {
+    color: #46484b; /* Couleur des liens en gris */
+}
+
+a:hover {
+    text-decoration: underline; /* Soulignement des liens au survol */
+}
+
+/* Centrer le contenu du formulaire */
+.text-center {
+    text-align: center; /* Centrer le texte */
+}
