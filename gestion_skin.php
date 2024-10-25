@@ -49,7 +49,7 @@ $result_skins = mysqli_query($link, $query);
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Valorant Skins</a>
+        <a class="navbar-brand" href="accueil.php">Valorant Skins</a>
         <div class="collapse navbar-collapse">
             <div class="ms-auto">
                 <!-- Lien vers la page de connexion -->
