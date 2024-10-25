@@ -1,9 +1,8 @@
 <?php
 session_start();
+include 'secure_host.php'; // Vérifie si l'utilisateur est connecté
 
-include 'secure_host.php';
-
-///créer le panier si nécessaire
+// Créer le panier si nécessaire
 function creationPanier() {
     if (!isset($_SESSION['panier'])) {
         $_SESSION['panier'] = array('id' => array(), 'nom' => array(), 'rarete' => array(), 'prix' => array());
@@ -35,16 +34,38 @@ if (isset($_GET['supprimer'])) {
     exit();
 }
 ?>
-
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr"> 
 <head>
     <meta charset="UTF-8">
-    <title>Mon Panier</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="site.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil Skins Valorant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- Lien vers Bootstrap -->
+    <link rel="stylesheet" href="site.css"> <!-- Lien vers le CSS -->
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Valorant Skins</a>
+        <div class="collapse navbar-collapse">
+            <div class="ms-auto">
+                <!-- Lien vers la page de connexion -->
+                <?php if (!isset($_SESSION['role'])): ?>
+                    <a href="connexion.php" class="btn btn-success">Connexion</a>
+                <?php else: ?>
+                    <a href="deconnexion.php" class="btn btn-danger">Déconnexion</a>
+                <?php endif; ?>
+            </div>
+            <!-- Lien vers la page de gestion des skins, visible uniquement pour l'administrateur -->
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                <div class="text-center mt-4">
+                    <a href="gestion_skin.php" class="btn btn-warning">Gérer les skins</a>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</nav>
+
 <div class="container mt-5">
     <h1 class="text-center">Mon Panier</h1>
 
@@ -89,7 +110,11 @@ if (isset($_GET['supprimer'])) {
         </table>
 
         <div class="text-center">
-            <a href="paiement.php" class="btn btn-success">Procéder au Paiement</a>
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'user'): ?>
+                <a href="paiement.php" class="btn btn-success">Procéder au Paiement</a>
+            <?php else: ?>
+                <div class="alert alert-danger">Vous devez être connecté en tant qu'utilisateur pour effectuer un paiement.</div>
+            <?php endif; ?>
             <a href="accueil.php" class="btn btn-primary">Retour à l'Accueil</a>
         </div>
     <?php endif; ?>

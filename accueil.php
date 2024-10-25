@@ -22,8 +22,30 @@ $result = mysqli_query($link, $query);
     <link rel="stylesheet" href="site.css"> <!-- Lien vers le CSS -->
 </head>
 <body>
-    
-<div class="image-titre text-center">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Valorant Skins</a>
+        <div class="collapse navbar-collapse">
+            <div class="ms-auto">
+                <!-- Lien vers la page de connexion -->
+                <?php if (!isset($_SESSION['role'])): ?>
+                    <a href="connexion.php" class="btn btn-success">Connexion</a>
+                <?php else: ?>
+                    <a href="deconnexion.php" class="btn btn-danger">Déconnexion</a>
+                <?php endif; ?>
+            </div>
+            <!-- Lien vers la page de gestion des skins, visible uniquement pour l'administrateur -->
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                <div class="text-center mt-4">
+                    <a href="gestion_skin.php" class="btn btn-warning">Gérer les skins</a>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</nav>
+
+
+<div class="image-titre text-center mt-4">
     <img src="image/valorant.jpg" width="120" height="75" class="img-fluid" alt="Valorant Logo" /><br>
 </div>
 
@@ -31,7 +53,6 @@ $result = mysqli_query($link, $query);
     <h1 class="text-center mb-4">Liste des Skins Valorant</h1>
     <div class="row">
         <?php
-        $compteur = 0;
         while ($donnees = mysqli_fetch_assoc($result)) {
             $id = $donnees["id"];
             $nom = $donnees["nom"];
@@ -47,11 +68,6 @@ $result = mysqli_query($link, $query);
                 </div>
             </div>
             <?php
-            $compteur++;
-            // Cette vérification n'est plus nécessaire si on utilise Bootstrap correctement
-            // if ($compteur % 3 == 0) {
-            //     echo "</div><div class='row'>";
-            // }
         }
         ?>
     </div>

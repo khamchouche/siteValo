@@ -1,14 +1,11 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start(); // Démarre la session si elle n'est pas déjà active
+}
 
-//try catch ou if test_connexion si session exiset 
-//sino header locatipn die fin redirection fichier 
-//secure a include si y  a pas de co (session)
-
-//test si la session de l'utilisateur est deja connecter
-if (!isset($_SESSION['login'])) {
+// Vérifie si la session de l'utilisateur est déjà connectée
+if (!isset($_SESSION['role'])) {
     header('Location: connexion.php');
     exit();
 }
-
-
 ?>

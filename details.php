@@ -39,7 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
 }
 
 // Récupérer l'ID du produit depuis l'URL
-$id = $_GET['id'] ?? 1; // Valeur par défaut si aucun ID n'est fourni
+
+// Vérifier si 'id' est présent dans les paramètres de l'URL
+if (isset($_GET['id'])) {
+    $id = $_GET['id']; // Si 'id' existe, on l'affecte à $id
+} else {
+    $id = 1; // Sinon, on définit $id à 1 par défaut
+} // Valeur par défaut si aucun ID n'est fourni
 
 // Requête pour obtenir les détails du produit
 $query = "SELECT * FROM $tableSkinValo WHERE id = $id";
@@ -47,15 +53,38 @@ $result = mysqli_query($link, $query);
 $donnees = mysqli_fetch_assoc($result);
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Détails du Skin</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="site.css">
+    <title>Accueil Skins Valorant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- Lien vers Bootstrap -->
+    <link rel="stylesheet" href="site.css"> <!-- Lien vers le CSS -->
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Valorant Skins</a>
+        <div class="collapse navbar-collapse">
+            <div class="ms-auto">
+                <!-- Lien vers la page de connexion -->
+                <?php if (!isset($_SESSION['role'])): ?>
+                    <a href="connexion.php" class="btn btn-success">Connexion</a>
+                <?php else: ?>
+                    <a href="deconnexion.php" class="btn btn-danger">Déconnexion</a>
+                <?php endif; ?>
+            </div>
+            <!-- Lien vers la page de gestion des skins, visible uniquement pour l'administrateur -->
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                <div class="text-center mt-4">
+                    <a href="gestion_skin.php" class="btn btn-warning">Gérer les skins</a>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</nav>
+
+
 <div class="container mt-5">
     <?php if (isset($_SESSION['message'])): ?>
         <div class="alert alert-info text-center">

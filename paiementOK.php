@@ -20,17 +20,38 @@ unset($_SESSION['ancien_panier']);
 
 $confirmation_message = "Votre paiement a été confirmé. Merci pour votre achat !";
 ?>
-
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmation de paiement</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="site.css">
+    <title>Accueil Skins Valorant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- Lien vers Bootstrap -->
+    <link rel="stylesheet" href="site.css"> <!-- Lien vers le CSS -->
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Valorant Skins</a>
+        <div class="collapse navbar-collapse">
+            <div class="ms-auto">
+                <!-- Lien vers la page de connexion -->
+                <?php if (!isset($_SESSION['role'])): ?>
+                    <a href="connexion.php" class="btn btn-success">Connexion</a>
+                <?php else: ?>
+                    <a href="deconnexion.php" class="btn btn-danger">Déconnexion</a>
+                <?php endif; ?>
+            </div>
+            <!-- Lien vers la page de gestion des skins, visible uniquement pour l'administrateur -->
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                <div class="text-center mt-4">
+                    <a href="gestion_skin.php" class="btn btn-warning">Gérer les skins</a>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</nav>
+
 
 <div class="container text-center mt-5">
     <h1>Confirmation de paiement</h1>
