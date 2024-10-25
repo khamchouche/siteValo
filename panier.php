@@ -3,7 +3,7 @@ session_start();
 
 include 'secure_host.php';
 
-// Fonction pour créer le panier si nécessaire
+///créer le panier si nécessaire
 function creationPanier() {
     if (!isset($_SESSION['panier'])) {
         $_SESSION['panier'] = array('id' => array(), 'nom' => array(), 'rarete' => array(), 'prix' => array());
@@ -12,7 +12,7 @@ function creationPanier() {
 
 creationPanier();
 
-// Suppression d'un article
+// Supprimer un article
 if (isset($_GET['supprimer'])) {
     $id = $_GET['supprimer'];
     $index = array_search($id, $_SESSION['panier']['id']);
@@ -23,7 +23,6 @@ if (isset($_GET['supprimer'])) {
         unset($_SESSION['panier']['rarete'][$index]);
         unset($_SESSION['panier']['prix'][$index]);
 
-        // Réindexer les tableaux
         $_SESSION['panier']['id'] = array_values($_SESSION['panier']['id']);
         $_SESSION['panier']['nom'] = array_values($_SESSION['panier']['nom']);
         $_SESSION['panier']['rarete'] = array_values($_SESSION['panier']['rarete']);

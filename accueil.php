@@ -13,7 +13,7 @@ $query = "SELECT * FROM $tableSkinValo";
 $result = mysqli_query($link, $query);
 ?>
 <!DOCTYPE html>
-<html lang="fr"> <!-- Changer "en" en "fr" pour le français -->
+<html lang="fr"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

@@ -55,7 +55,7 @@ $result_skins = mysqli_query($link, $query);
     <form method="POST" class="mb-4">
         <input type="text" name="nom" placeholder="Nom du skin" required>
         <input type="text" name="image" placeholder="URL de l'image" required>
-        <input type="text" name="rarete" placeholder="Rareté" required> <!-- Champ pour la rareté -->
+        <input type="text" name="rarete" placeholder="Rareté" required> 
         <input type="hidden" name="action" value="ajouter">
         <button type="submit" class="btn btn-primary">Ajouter</button>
     </form>
@@ -70,24 +70,21 @@ $result_skins = mysqli_query($link, $query);
                         <h5 class="card-title"><?php echo $donnees['nom']; ?></h5>
                         <p>Rareté : <?php echo $donnees['rarete']; ?></p>
 
-                        <!-- Formulaire pour supprimer -->
                         <form method="POST" style="display:inline;">
                             <input type="hidden" name="id" value="<?php echo $donnees['id']; ?>">
                             <input type="hidden" name="action" value="supprimer">
                             <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce skin ?');" class="btn btn-danger">Supprimer</button>
                         </form>
 
-                        <!-- Bouton pour afficher le formulaire de modification -->
                         <button onclick="document.getElementById('modifierForm-<?php echo $donnees['id']; ?>').style.display='block'" class="btn btn-warning">Modifier</button>
 
-                        <!-- Formulaire de modification -->
                         <div id="modifierForm-<?php echo $donnees['id']; ?>" style="display:none;">
                             <h6>Modifier le Skin</h6>
                             <form method="POST">
                                 <input type="hidden" name="id" value="<?php echo $donnees['id']; ?>">
                                 <input type="text" name="nom" value="<?php echo $donnees['nom']; ?>" required>
                                 <input type="text" name="image" value="<?php echo $donnees['image']; ?>" required>
-                                <input type="text" name="rarete" value="<?php echo $donnees['rarete']; ?>" required> <!-- Champ pour la rareté -->
+                                <input type="text" name="rarete" value="<?php echo $donnees['rarete']; ?>" required> 
                                 <input type="hidden" name="action" value="modifier">
                                 <button type="submit" class="btn btn-primary">Modifier</button>
                                 <button type="button" onclick="document.getElementById('modifierForm-<?php echo $donnees['id']; ?>').style.display='none'" class="btn btn-secondary">Annuler</button>

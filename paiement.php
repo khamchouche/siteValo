@@ -7,14 +7,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $num_carte = $_POST['num_carte'] ?? '';
     $date_expiration = $_POST['date_expiration'] ?? '';
 
-    // Nettoyage du numéro de carte (suppression des espaces)
     $num_carte = str_replace(' ', '', $num_carte);
 
     // Vérification que les champs ne sont pas vides
     if (empty($num_carte) || empty($date_expiration)) {
         $erreur = "Veuillez remplir tous les champs.";
     } else {
-        // Vérification du numéro de carte (16 chiffres et dernier = premier)
+        // Vérification du numéro de carte 
         if (strlen($num_carte) != 16 || !is_numeric($num_carte) || $num_carte[0] != $num_carte[15]) {
             $erreur = "Le numéro de carte doit contenir 16 chiffres et le dernier chiffre doit être identique au premier.";
         }
@@ -37,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     'nom' => array(),
                     'rarete' => array(),
                     'prix' => array()
-                ); // Réinitialisation correcte du panier
+                ); // Réinitialisation du panier
                 header("Location: paiementOK.php");
                 exit();
             }

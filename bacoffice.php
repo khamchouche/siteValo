@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Fonction pour créer le panier si nécessaire
+// créer le panier si nécessaire
 function creationPanier() {
     if (!isset($_SESSION['panier'])) {
         $_SESSION['panier'] = array('id' => array(), 'nom' => array(), 'rarete' => array(), 'prix' => array());
@@ -35,12 +35,12 @@ function supprimerArticle($id) {
         $_SESSION['panier']['rarete'] = array_values($_SESSION['panier']['rarete']);
         $_SESSION['panier']['prix'] = array_values($_SESSION['panier']['prix']);
         
-        return true; // Indique que la suppression a réussi
+        return true; //suppression a réussi
     }
-    return false; // Indique que la suppression a échoué
+    return false; // suppression a échoué
 }
 
-// Traitement des actions (ajout ou suppression)
+// Traitement des actions 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $action = $_POST['action'];
 
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    // Redirection vers la page du panier après l'ajout ou suppression
+    // Lien vers la page du panier après l'ajout ou suppression
     header('Location: panier.php');
     exit();
 }

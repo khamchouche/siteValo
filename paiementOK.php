@@ -8,13 +8,16 @@ if (!isset($_SESSION['paiement_reussi']) || $_SESSION['paiement_reussi'] !== tru
 }
 
 // Récupération de l'ancien panier pour affichage
-$ancien_panier = $_SESSION['ancien_panier'] ?? array();
+if (isset($_SESSION['ancien_panier'])) {
+    $ancien_panier = $_SESSION['ancien_panier'];
+} else {
+    $ancien_panier = array();
+}
 
 // Réinitialisation des variables de session liées au paiement
 unset($_SESSION['paiement_reussi']);
 unset($_SESSION['ancien_panier']);
 
-// Message de confirmation
 $confirmation_message = "Votre paiement a été confirmé. Merci pour votre achat !";
 ?>
 
